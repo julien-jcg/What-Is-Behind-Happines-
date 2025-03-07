@@ -38,7 +38,13 @@ model1 = smf.ols(
 ```
 
 ### 3. **Multicollinearity Check (VIF Analysis)**
-The **Variance Inflation Factor (VIF)** was calculated for all explanatory variables. Since all VIF values (except Corruption) were **above 10**, indicating high multicollinearity, Principal Component Analysis (PCA) was used to extract independent components.
+The **Variance Inflation Factor (VIF)** was calculated for all explanatory variables.
+```python
+vif_data = pd.DataFrame()
+vif_data["Variable"] = ["LogPerCapitaGDP", "LifeExpectancy", "SocialSupport", "Freedom", "Corruption", "LogAirPollution", "GenderInequality"]
+vif_data["VIF"] = [variance_inflation_factor(happinessdata[["LogPerCapitaGDP", "LifeExpectancy", "SocialSupport", "Freedom", "Corruption", "LogAirPollution", "GenderInequality"]].values, i) for i in range(len(["LogPerCapitaGDP", "LifeExpectancy", "SocialSupport", "Freedom", "Corruption", "LogAirPollution", "GenderInequality"]))]
+```
+Since all VIF values (except Corruption) were **above 10**, indicating high multicollinearity, Principal Component Analysis (PCA) was used to extract independent components.
 
 ### 4. **Principal Component Analysis (PCA)**
 - Standardized the explanatory variables (except Corruption).
