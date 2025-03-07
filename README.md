@@ -21,10 +21,10 @@ The dataset includes:
 ### 1. **Analyzing the Dataset**
 - **Correlation Plot** to analyze the realtionships between happiness and the proposed explanatory variables.
 - **Log-transformation** of Per Capita GDP and Air Pollution to normalize the data:
-  ```python
-  happinessdata["LogPerCapitaGDP"] = np.log(df["PerCapitaGDP"])
-  happinessdata["LogAirPollution"] = np.log(df["AirPollution"])
-  ```
+```python
+happinessdata["LogPerCapitaGDP"] = np.log(df["PerCapitaGDP"])
+happinessdata["LogAirPollution"] = np.log(df["AirPollution"])
+```
 
 ### 2. **First Fixed-Effect Regression Model**
 The regression model is run with:
