@@ -27,9 +27,10 @@ happinessdata["LogAirPollution"] = np.log(df["AirPollution"])
 ```
 
 ### 2. **First Fixed-Effect Regression Model**
-The regression model is run with:
-- The **dependent variable**: `HappinessScore`,
+The first fixed-effects regression model is run with:
+- The **dependent variable**: `HappinessScore`.
 - The **independent variables**: `LogPerCapitaGDP`, `LifeExpectancy`, `SocialSupport`, `Freedom`, `Corruption`, `LogAirPollution`, and `GenderInequality`.
+Why a fixed-effects regression model? To control for time-invariant differences across countries.
 ```python
 model1 = smf.ols(
     formula = "HappinessScore ~ LogPerCapitaGDP + LifeExpectancy + SocialSupport + Freedom + Corruption + LogAirPollution + GenderInequality + C(Country)",
@@ -46,37 +47,26 @@ vif_data["VIF"] = [variance_inflation_factor(happinessdata[["LogPerCapitaGDP", "
 ```
 Since all VIF values (except Corruption) were **above 10**, indicating high multicollinearity, Principal Component Analysis (PCA) was used to extract independent components.
 
-### 4. **Principal Component Analysis (PCA)**
-- Standardized the explanatory variables (except Corruption).
-- Extracted **two principal components (PC1 & PC2)**.
-- PCA Loadings were computed to understand the contribution of original variables to PC1 & PC2.
+### 4. **Principal Component Analysis (PCA) and Second Fixed-Effects Regression Model**
+- The idea was to standardize the explanatory variables (except Corruption) and extract **two principal components (PC1 & PC2)**.
+- The second fixed-effects regression model was run with:
+  - **Dependent Variable**: `HappinessScore`.
+  - **Independent Variables**: `PC1`, `PC2`, and `Corruption`.
+```python
+model2 = smf.ols(
+    formula = "HappinessScore ~ PC1 + PC2 + Corruption + C(Country)",
+    data = happinessdata
+).fit()
+```
 
-### 5. **Second Fixed-Effects Regression Model**
-- The regression model was run with:
-  - **Dependent Variable**: `HappinessScore`
-  - **Independent Variables**: `PC1`, `PC2`, and `Corruption`
-  - **Fixed Effects**: `Country` to control for time-invariant differences across countries.
+### 5. **VIF Analysis**
+Another VIV analysis was carried out to assess the multicolinearity between `PC1`, `PC2`, and `Corruption`.
 
-### 6. **Visualization**
-- A **correlation plot** was created to show the relationship between `HappinessScore` and `LogPerCapitaGDP`.
-- A **dashboard with an interactive world map** was implemented to visualize country-level data over time.
-
-## Results Interpretation
-- The **PCA loadings** help interpret the effects of individual variables on happiness.
-- The **fixed-effects model** accounts for country-specific variations and provides more reliable estimates.
-- The **dashboard and correlation plots** give a visual understanding of happiness determinants.
+### 6. **Dashboard**
+In order to easily visualize all the data processed, a dashboard was created. On this dashboard, you can display a map which shows each variable of every countries covered for each year (from 2015 to 2020).
 
 ## How to Use the Code
-1. Install required Python libraries:
-   ```bash
-   pip install pandas numpy statsmodels scikit-learn seaborn dash plotly
-   ```
-2. Run the Python script to:
-   - Perform PCA and regression analysis
-   - Display VIF values
-   - Generate correlation plots
-   - Launch the interactive dashboard
-
-## Conclusion
-This project demonstrates the impact of economic and social factors on happiness while addressing multicollinearity using PCA. The combination of **fixed-effects regression** and **interactive visualization** provides a comprehensive understanding of global happiness trends.
-
+Install required Python libraries:
+```bash
+pip install pandas numpy statsmodels scikit-learn seaborn dash plotly
+```
