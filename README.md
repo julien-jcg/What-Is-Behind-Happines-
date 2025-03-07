@@ -1,4 +1,4 @@
-# What-Is-Behind-Happines-?
+# What-Is-Behind-Happiness-?
 Author: Julien Jonquères Cauquil-Gleizes
 
 ## Project Overview
