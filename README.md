@@ -30,7 +30,7 @@ The dataset includes:
 ### 2. **First Fixed-Effect Regression Model**
 The regression model is run with:
 - The **dependent variable**: `HappinessScore`,
-- The **independent variables**: `LogPerCapitaGDP`, `LifeExpectancy`, `SocialSupport`, `Freedom`, Corruption`, `LogAirPollution`, and `GenderInequality`.
+- The **independent variables**: `LogPerCapitaGDP`, `LifeExpectancy`, `SocialSupport`, `Freedom`, `Corruption`, `LogAirPollution`, and `GenderInequality`.
 
 ### 3. **Multicollinearity Check (VIF Analysis)**
 The **Variance Inflation Factor (VIF)** was calculated for all explanatory variables.
