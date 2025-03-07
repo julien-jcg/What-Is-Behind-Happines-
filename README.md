@@ -30,10 +30,15 @@ The dataset includes:
 The regression model is run with:
 - The **dependent variable**: `HappinessScore`,
 - The **independent variables**: `LogPerCapitaGDP`, `LifeExpectancy`, `SocialSupport`, `Freedom`, `Corruption`, `LogAirPollution`, and `GenderInequality`.
+```python
+model1 = smf.ols(
+    formula = "HappinessScore ~ LogPerCapitaGDP + LifeExpectancy + SocialSupport + Freedom + Corruption + LogAirPollution + GenderInequality + C(Country)",
+    data = happinessdata
+).fit()
+```
 
 ### 3. **Multicollinearity Check (VIF Analysis)**
-The **Variance Inflation Factor (VIF)** was calculated for all explanatory variables.
-- Since all VIF values (except Corruption) were **above 10**, indicating high multicollinearity, PCA was used to extract independent components.
+The **Variance Inflation Factor (VIF)** was calculated for all explanatory variables. Since all VIF values (except Corruption) were **above 10**, indicating high multicollinearity, Principal Component Analysis (PCA) was used to extract independent components.
 
 ### 4. **Principal Component Analysis (PCA)**
 - Standardized the explanatory variables (except Corruption).
