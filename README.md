@@ -1,6 +1,5 @@
 # What-Is-Behind-Happines-?
-Python project for PSE
-# README: Happiness Score Regression Analysis
+Author: Julien Jonquères Cauquil-Gleizes
 
 ## Project Overview
 This project aims to reply to the research question "**What is behind happiness?**" and its subquestion "**What makes a country happy?**. To address these questions, this project analyzes the relationship between happiness scores and various socio-economic factors using a **panel fixed-effects regression model**. Due to high multicollinearity among explanatory variables, **Principal Component Analysis (PCA)** was applied to reduce dimensionality while preserving meaningful information.
