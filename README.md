@@ -68,5 +68,5 @@ In order to easily visualize all the data processed, a dashboard was created. On
 ## How to Use the Code
 Install required Python libraries:
 ```bash
-pip install pandas numpy statsmodels scikit-learn seaborn dash plotly
+pip install pandas numpy statsmodels scikit-learn seaborn dash plotly matplotlib.pyplot
 ```
