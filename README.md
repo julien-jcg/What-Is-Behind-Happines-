@@ -19,30 +19,35 @@ The dataset includes:
 
 
 ## Project's Outline
-### 1. **Data Preprocessing**
-- **Log-transformation** of `PerCapitaGDP` and `AirPollution` to normalize the data:
+### 1. **Analyzing the Dataset**
+- **Correlation Plot** to analyze the realtionships between happiness and the proposed explanatory variables.
+- **Log-transformation** of Per Capita GDP and Air Pollution to normalize the data:
   ```python
   happinessdata["LogPerCapitaGDP"] = np.log(df["PerCapitaGDP"])
   happinessdata["LogAirPollution"] = np.log(df["AirPollution"])
   ```
 
+### 2. **First Fixed-Effect Regression Model**
+The regression model is run with:
+- The **dependent variable**: `HappinessScore`,
+- The **independent variables**: `LogPerCapitaGDP`, `LifeExpectancy`, `SocialSupport`, `Freedom`, Corruption`, `LogAirPollution`, and `GenderInequality`.
 
-### 2. **Multicollinearity Check (VIF Analysis)**
-- **Variance Inflation Factor (VIF)** was calculated for all explanatory variables.
+### 3. **Multicollinearity Check (VIF Analysis)**
+The **Variance Inflation Factor (VIF)** was calculated for all explanatory variables.
 - Since all VIF values (except Corruption) were **above 10**, indicating high multicollinearity, PCA was used to extract independent components.
 
-### 3. **Principal Component Analysis (PCA)**
+### 4. **Principal Component Analysis (PCA)**
 - Standardized the explanatory variables (except Corruption).
 - Extracted **two principal components (PC1 & PC2)**.
 - PCA Loadings were computed to understand the contribution of original variables to PC1 & PC2.
 
-### 4. **Fixed-Effects Regression Model**
+### 5. **Second Fixed-Effects Regression Model**
 - The regression model was run with:
   - **Dependent Variable**: `HappinessScore`
   - **Independent Variables**: `PC1`, `PC2`, and `Corruption`
   - **Fixed Effects**: `Country` to control for time-invariant differences across countries.
 
-### 5. **Visualization**
+### 6. **Visualization**
 - A **correlation plot** was created to show the relationship between `HappinessScore` and `LogPerCapitaGDP`.
 - A **dashboard with an interactive world map** was implemented to visualize country-level data over time.
 
