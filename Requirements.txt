@@ -1,1 +1,6 @@
 
+# Requirements
+Install required Python libraries:
+```bash
+pip install pandas numpy statsmodels scikit-learn seaborn dash plotly
+```
